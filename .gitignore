@@ -1,0 +1,7 @@
+*.[oa]
+*.so
+*~
+*.nogem
+*nogem.*
+*.bak
+*.org

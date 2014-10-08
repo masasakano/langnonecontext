@@ -1,0 +1,10 @@
+name = "Language-None Context Module"
+; Taken from CCC (Custom Context Condition) Example Module in
+; https://ohthehugemanatee.org/blog/2013/12/02/custom-context-conditions/
+description = "Provides a custom Context Condition based on LANGUAGE_NONE"
+core = 7.x
+version = 7.x-1.x
+package = "Custom"
+
+dependencies[] = i18n
+dependencies[] = context
