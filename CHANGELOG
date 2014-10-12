@@ -1,6 +1,13 @@
 -----
+(Version: v1.0.1)
+2014-10-12  Masa Sakano
+ * $node->language is used first before tnid, as tnid can still be zero even if the language is set, if the translation is not available.
+	Also, isset() is called now to handle a potential exception while creating a new node.
+
+-----
 (Version: 1.0.0)
 2014-10-08  Masa Sakano
+
  * First release, after tidying up the codes.
 
 -----

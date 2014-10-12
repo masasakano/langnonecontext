@@ -75,15 +75,35 @@ class langnonecontext_condition_neutral extends context_condition {
     foreach ($this->get_contexts() as $context) {
       $values= $this->fetch_from_context($context, 'values');
 
-      if     ($node->tnid == 0 && !empty($values['kTRUE'])) {
-        // Node is Language-Neutral, and the condition is set by the user
-        // to match Language-Neutral.
-        $this->condition_met($context);
+      if (isset($node->language)) {
+        // This condition isset() is necessary - otherwise it would cause
+        // an error when called during previewing a node to be created.
+
+        if     ($node->language == 'und' && !empty($values['kTRUE'])) {
+          // Node is Language-Neutral, and the condition is set by the user
+          // to match Language-Neutral.
+          $this->condition_met($context);
+        }
+        elseif ($node->language != 'und' && !empty($values['kFALSE'])) {
+          // Node is not Language-Neutral, and the condition is set by the user
+          // to match non Language-Neutral, aka the node in a certain language.
+          $this->condition_met($context);
+        }
       }
-      elseif ($node->tnid != 0 && !empty($values['kFALSE'])) {
-        // Node is not Language-Neutral, and the condition is set by the user
-        // to match non Language-Neutral, aka the node in a certain language.
-        $this->condition_met($context);
+      elseif (isset($node->tnid)) {
+        // When a node is created without the translation, even if the language
+        // of the node is set, tnid can still be zero.
+
+        if     ($node->tnid == 0 && !empty($values['kTRUE'])) {
+          // Node is Language-Neutral, and the condition is set by the user
+          // to match Language-Neutral.
+          $this->condition_met($context);
+        }
+        elseif ($node->tnid != 0 && !empty($values['kFALSE'])) {
+          // Node is not Language-Neutral, and the condition is set by the user
+          // to match non Language-Neutral, aka the node in a certain language.
+          $this->condition_met($context);
+        }
       }
     }	// foreach ($this->get_contexts() as $context) {
   }	// function execute($node) {
