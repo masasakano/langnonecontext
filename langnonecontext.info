@@ -4,5 +4,5 @@ core = 7.x
 version = 7.x-1.x
 package = "Custom"
 
-dependencies[] = i18n
+dependencies[] = locale
 dependencies[] = context

@@ -16,6 +16,7 @@ For example:
 
 Then enable the module via /admin/modules or drush
     % drush en langnonecontext
+Note context and (built-in) locale modules must be enabled beforehand.
 
 Usage
 -----
